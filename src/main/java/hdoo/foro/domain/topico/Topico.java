@@ -4,12 +4,20 @@ import hdoo.foro.domain.curso.Curso;
 import hdoo.foro.domain.respuesta.Respuesta;
 import hdoo.foro.domain.usuario.Usuario;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name = "Topico")
 @Table(name = "topicos")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Topico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,5 +46,23 @@ public class Topico {
         this.fecha_creacion = fecha_creacion;
         this.usuario = usuario;
         this.curso = curso;
+    }
+
+    public void actualizarDatos(String titulo, String mensaje, LocalDateTime fecha_creacion, Usuario usuario, Curso curso) {
+        if (titulo != null) {
+            this.titulo = titulo;
+        }
+        if (mensaje != null) {
+            this.mensaje = mensaje;
+        }
+        if (fecha_creacion != null) {
+            this.fecha_creacion = fecha_creacion;
+        }
+        if (usuario != null) {
+            this.usuario = usuario;
+        }
+        if (curso != null) {
+            this.curso = curso;
+        }
     }
 }

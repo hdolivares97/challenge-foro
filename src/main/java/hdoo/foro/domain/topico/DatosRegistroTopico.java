@@ -12,7 +12,7 @@ public record DatosRegistroTopico(
         String titulo,
         @NotBlank
         String mensaje,
-        @NotBlank
+        @NotNull
         @Future
         LocalDateTime fecha_creacion,
         @NotNull
