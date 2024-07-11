@@ -1,4 +1,4 @@
-package hdoo.foro.infra;
+package hdoo.foro.infra.errores;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ValidationException;

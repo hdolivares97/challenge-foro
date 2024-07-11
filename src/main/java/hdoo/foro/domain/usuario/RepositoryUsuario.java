@@ -1,8 +1,8 @@
 package hdoo.foro.domain.usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@Repository
 public interface RepositoryUsuario extends JpaRepository<Usuario, Long> {
+    UserDetails findByNombre(String username);
 }
