@@ -21,4 +21,12 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Respuesta> respuesta;
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

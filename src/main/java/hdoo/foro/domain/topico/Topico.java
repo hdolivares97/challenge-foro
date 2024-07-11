@@ -16,8 +16,8 @@ public class Topico {
     private Long id;
     private String titulo;
     private String mensaje;
-    private LocalDateTime fechaCreacion;
-    @Enumerated
+    private LocalDateTime fecha_creacion;
+    @Enumerated(EnumType.STRING)
     private Estatus estatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,12 +31,12 @@ public class Topico {
     @OneToMany(mappedBy = "topico")
     private List<Respuesta> respuesta;
 
-    public Topico(DatosRegistroTopico datosRegistroTopico) {
-        this.titulo = datosRegistroTopico.titulo();
-        this.mensaje = datosRegistroTopico.mensaje();
-        this.fechaCreacion = datosRegistroTopico.fechaCreacion();
+    public Topico(String titulo, String mensaje, LocalDateTime fecha_creacion, Usuario usuario, Curso curso) {
         this.estatus = Estatus.ABIERTO;
-        this.usuario = datosRegistroTopico.usuario();
-        this.curso = datosRegistroTopico.curso();
+        this.titulo = titulo;
+        this.mensaje = mensaje;
+        this.fecha_creacion = fecha_creacion;
+        this.usuario = usuario;
+        this.curso = curso;
     }
 }

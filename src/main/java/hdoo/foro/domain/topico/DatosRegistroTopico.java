@@ -1,16 +1,23 @@
 package hdoo.foro.domain.topico;
 
-import hdoo.foro.domain.curso.Curso;
-import hdoo.foro.domain.usuario.Usuario;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDateTime;
 
 public record DatosRegistroTopico(
+        @NotBlank
         String titulo,
+        @NotBlank
         String mensaje,
-        LocalDateTime fechaCreacion,
-        Estatus estatus,
-        Usuario usuario,
-        Curso curso
+        @NotBlank
+        @Future
+        LocalDateTime fecha_creacion,
+        @NotNull
+        Long usuario,
+        @NotNull
+        Long curso
 ) {
 }

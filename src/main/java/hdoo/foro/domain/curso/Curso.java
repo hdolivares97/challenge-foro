@@ -12,8 +12,18 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
     @OneToMany(mappedBy = "curso")
     private List<Topico> topico;
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

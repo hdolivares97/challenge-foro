@@ -1,11 +1,12 @@
 package hdoo.foro.controller;
 
+import hdoo.foro.domain.curso.RepositoryCurso;
 import hdoo.foro.domain.topico.DatosRegistroTopico;
 import hdoo.foro.domain.topico.RepositoryTopico;
 import hdoo.foro.domain.topico.Topico;
+import hdoo.foro.domain.usuario.RepositoryUsuario;
+import hdoo.foro.domain.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,23 @@ public class TopicoController {
     @Autowired
     private RepositoryTopico repositoryTopico;
 
-    @PostMapping
-    public ResponseEntity registrarTopico(@RequestBody DatosRegistroTopico datosRegistroTopico){
-        var registrar = repositoryTopico.save(new Topico(datosRegistroTopico));
+    @Autowired
+    private RepositoryUsuario repositoryUsuario;
 
-        return ResponseEntity.ok().build();
+    @Autowired
+    private RepositoryCurso repositoryCurso;
+
+    @PostMapping
+    public void registrarTopico(@RequestBody DatosRegistroTopico datosRegistroTopico){
+        //System.out.println(datosRegistroTopico);
+        var usuario = repositoryUsuario.findById(datosRegistroTopico.usuario()).get();
+        var curso = repositoryCurso.findById(datosRegistroTopico.curso()).get();
+        //System.out.println(curso);
+        var data = repositoryTopico.save(new Topico(
+                datosRegistroTopico.titulo(),
+                datosRegistroTopico.mensaje(),
+                datosRegistroTopico.fecha_creacion(),
+                usuario,
+                curso));
     }
 }
